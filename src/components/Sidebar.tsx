@@ -1,9 +1,6 @@
 import { House, Folder, ClipboardPen, Timer, SquareText, ChartNoAxesCombined, Clock } from "lucide-react";
-import { useState } from "react";
 
-export default function Sidebar() {
-  const [viewId, setViewId] = useState(0);
-
+export default function Sidebar({ viewId, setViewId }) {
   return (
     <div className="sidebar">
       <header>
