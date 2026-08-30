@@ -9,7 +9,7 @@
 
 .container {
   display: flex;
-  background-color: blue;
+  /* background-color: blue; */
   min-height: 100vh;
 }
 
@@ -73,5 +73,89 @@
         stroke: #6c4ce8;
       }
     }
+  }
+}
+
+.view-card {
+  padding: 15px 35px;
+  width: 100%;
+}
+
+.projects {
+  width: 100%;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  flex-wrap: wrap;
+
+  .projects-list {
+    width: 100%;
+    margin-top: 20px;
+    border: #e7e8ec 1px solid;
+    border-radius: 15px;
+
+    .project-item {
+      border-bottom: #e7e8ec 1px solid;
+      padding: 15px;
+      display: flex;
+      column-gap: 15px;
+      align-items: center;
+
+      &:last-child {
+        border: none;
+      }
+
+      .project-colour {
+        width: 30px;
+        height: 30px;
+        background-color: red;
+        border-radius: 5px;
+      }
+
+      .project-info {
+        display: flex;
+        flex-direction: column;
+        row-gap: 5px;
+
+        .project-name {
+          font-size: 14px;
+          font-weight: 500;
+        }
+
+        .project-description {
+          color: #969ba3;
+          font-size: 12px;
+        }
+      }
+
+      .project-hours {
+        margin-left: auto;
+
+        span {
+          font-size: 12px;
+          color: #969ba3;
+        }
+      }
+
+      .context-menu:hover {
+        cursor: pointer;
+      }
+    }
+  }
+}
+
+.btn {
+  padding: 10px 15px;
+  background-color: #6c4ce8;
+  color: #fff;
+  font-size: 13px;
+  border-radius: 7px;
+  border: 1px solid #6c4ce8;
+
+  &:hover {
+    cursor: pointer;
+    background-color: #8971e7;
+    border: 1px solid #8971e7;
+    transition: 0.3s;
   }
 }
