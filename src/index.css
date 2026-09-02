@@ -215,17 +215,16 @@ button[disabled] {
     color: black;
     background-color: white;
     border-radius: 10px;
-    padding: 25px;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     align-items: flex-start;
 
     .modal-heading-section {
+      padding: 20px;
       display: flex;
       justify-content: space-between;
       width: 100%;
-      margin-bottom: 20px;
 
       .close-modal {
         background: none;
@@ -237,7 +236,14 @@ button[disabled] {
       }
     }
 
+    .greyline {
+      height: 0.5px;
+      width: 100%;
+      background-color: lightgrey;
+    }
+
     .form-container {
+      padding: 20px;
       width: 100%;
       height: 100%;
 
@@ -260,6 +266,7 @@ button[disabled] {
 
         input,
         textarea {
+          font-size: 12px;
           padding: 10px;
           border-radius: 5px;
           outline: none;
@@ -274,6 +281,7 @@ button[disabled] {
     }
 
     .modal-footer {
+      padding: 20px 20px 20px 0;
       width: 100%;
       display: flex;
       align-items: center;

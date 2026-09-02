@@ -31,7 +31,12 @@ export default function Modal({
             <X color="#6B7078" size="18px" />
           </button>
         </div>
+
+        <div className="greyline"></div>
+
         {children}
+
+        <div className="greyline"></div>
 
         <div className="modal-footer">
           <button className="btn btn-secondary" onClick={() => handleCloseModal()}>
