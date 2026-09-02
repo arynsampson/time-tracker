@@ -20,6 +20,11 @@ export default function Projects() {
     localStorage.setItem("projects", JSON.stringify(projects));
   }, [projects]);
 
+  const resetStateData = () => {
+    setProjectName("");
+    setProjectDescription("");
+  };
+
   const handleAddProject = () => {
     setProjects([
       ...projects,
@@ -30,8 +35,7 @@ export default function Projects() {
       },
     ]);
 
-    setProjectName("");
-    setProjectDescription("");
+    resetStateData();
     setIsOpen(false);
   };
 
@@ -52,26 +56,39 @@ export default function Projects() {
           })}
         </div>
         {isOpen && (
-          <Modal setIsOpen={setIsOpen}>
-            <h3>Add new Project</h3>
+          <Modal
+            setIsOpen={setIsOpen}
+            heading="Add New Project"
+            submitDisabled={projectName.length < 3}
+            resetStateData={resetStateData}
+            handleAddProject={handleAddProject}
+          >
             <div className="form-container">
-              <label htmlFor="proeject-name">Enter Project name:</label>
-              <input
-                type="text"
-                name="project-name"
-                value={projectName}
-                onChange={(e) => setProjectName(e.target.value)}
-                required
-              />
-              <textarea
-                name="project-description"
-                id="project-description"
-                value={projectDescription}
-                onChange={(e) => setProjectDescription(e.target.value)}
-              />
-              <button type="submit" onClick={() => handleAddProject()} disabled={projectName.length < 3}>
-                Add project
-              </button>
+              <div>
+                <label htmlFor="project-name">Project name</label>
+                <input
+                  type="text"
+                  id="project-name"
+                  name="project-name"
+                  value={projectName}
+                  onChange={(e) => setProjectName(e.target.value)}
+                  required
+                  placeholder="Enter project name"
+                />
+              </div>
+
+              <div>
+                <label htmlFor="project-description">
+                  Project Description <span>(Optional)</span>
+                </label>
+                <textarea
+                  name="project-description"
+                  id="project-description"
+                  value={projectDescription}
+                  onChange={(e) => setProjectDescription(e.target.value)}
+                  placeholder="Enter project description"
+                />
+              </div>
             </div>
           </Modal>
         )}
