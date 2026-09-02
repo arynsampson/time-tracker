@@ -5,7 +5,7 @@ type ButtonProps = {
 
 export default function Button({ text, setIsOpen }: ButtonProps) {
   return (
-    <button className="btn" onClick={() => setIsOpen(true)}>
+    <button className="btn btn-primary" onClick={() => setIsOpen(true)}>
       + {text}
     </button>
   );
