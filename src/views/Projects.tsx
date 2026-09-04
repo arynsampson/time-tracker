@@ -74,6 +74,7 @@ export default function Projects() {
                   onChange={(e) => setProjectName(e.target.value)}
                   required
                   placeholder="Enter project name"
+                  maxLength={60}
                 />
               </div>
 
@@ -108,6 +109,7 @@ export default function Projects() {
                   value={projectDescription}
                   onChange={(e) => setProjectDescription(e.target.value)}
                   placeholder="Enter project description"
+                  maxLength={255}
                 />
               </div>
             </div>
