@@ -8,13 +8,17 @@ type Project = {
   id: string;
   projectName: string;
   projectDescription: string;
+  projectColour: string;
 };
 
 export default function Projects() {
   const [isOpen, setIsOpen] = useState(false);
   const [projectName, setProjectName] = useState("");
   const [projectDescription, setProjectDescription] = useState("");
+  const [projectColour, setProjectColour] = useState("");
   const [projects, setProjects] = useState<Project[]>([]);
+
+  const colours = ["#3B82F6", "#8B5CF6", "#4CAF6A", "#F5B82E", "#F28C38", "#E76F6F", "#D66BA0", "#3BA7A0"];
 
   useEffect(() => {
     localStorage.setItem("projects", JSON.stringify(projects));
@@ -23,6 +27,7 @@ export default function Projects() {
   const resetStateData = () => {
     setProjectName("");
     setProjectDescription("");
+    setProjectColour("");
   };
 
   const handleAddProject = () => {
@@ -32,6 +37,7 @@ export default function Projects() {
         id: crypto.randomUUID(),
         projectName,
         projectDescription,
+        projectColour,
       },
     ]);
 
@@ -65,7 +71,7 @@ export default function Projects() {
           >
             <div className="form-container">
               <div>
-                <label htmlFor="project-name">Project name</label>
+                <label htmlFor="project-name">Project Name</label>
                 <input
                   type="text"
                   id="project-name"
@@ -75,6 +81,27 @@ export default function Projects() {
                   required
                   placeholder="Enter project name"
                 />
+              </div>
+
+              <label htmlFor="project-name">Project Colour</label>
+              <div className="project-colour-selection">
+                {colours.map((colour, index) => (
+                  <div
+                    key={index}
+                    className="colour-selection-item"
+                    style={{
+                      border: projectColour === colour ? `1px solid ${colour}` : "none",
+                    }}
+                    onClick={() => {
+                      if (projectColour === colour) {
+                        return setProjectColour("");
+                      }
+                      return setProjectColour(colour);
+                    }}
+                  >
+                    <div style={{ backgroundColor: colour }}></div>
+                  </div>
+                ))}
               </div>
 
               <div>
