@@ -4,7 +4,7 @@ import Button from "../components/Button";
 import Modal from "../components/Modal";
 import ProjectItem from "../components/ProjectItem";
 
-type Project = {
+export type Project = {
   id: string;
   projectName: string;
   projectDescription: string;
@@ -52,13 +52,7 @@ export default function Projects() {
         <Button text="New Project" setIsOpen={setIsOpen} />
         <div className="projects-list">
           {projects.map((project) => {
-            return (
-              <ProjectItem
-                key={project.id}
-                projectName={project.projectName}
-                projectDescription={project.projectDescription}
-              />
-            );
+            return <ProjectItem key={project.id} project={project} />;
           })}
         </div>
         {isOpen && (
