@@ -18,8 +18,6 @@ export default function Projects() {
   const [projectColour, setProjectColour] = useState("");
   const [projects, setProjects] = useState<Project[]>([]);
 
-  const colours = ["#3B82F6", "#8B5CF6", "#4CAF6A", "#F5B82E", "#F28C38", "#E76F6F", "#D66BA0", "#3BA7A0"];
-
   useEffect(() => {
     localStorage.setItem("projects", JSON.stringify(projects));
   }, [projects]);
@@ -30,7 +28,7 @@ export default function Projects() {
     setProjectColour("");
   };
 
-  const handleAddProject = () => {
+  const handleSubmitData = () => {
     setProjects([
       ...projects,
       {
@@ -52,68 +50,34 @@ export default function Projects() {
         <Button text="New Project" setIsOpen={setIsOpen} />
         <div className="projects-list">
           {projects.map((project) => {
-            return <ProjectItem key={project.id} project={project} />;
+            return (
+              <ProjectItem
+                key={project.id}
+                project={project}
+                resetStateData={resetStateData}
+                handleSubmitData={handleSubmitData}
+                setProjectName={setProjectName}
+                setProjectDescription={setProjectDescription}
+                setProjectColour={setProjectColour}
+              />
+            );
           })}
         </div>
         {isOpen && (
           <Modal
-            setIsOpen={setIsOpen}
             heading="Add New Project"
+            submitButtonCopy="Create Project"
+            projectName={projectName}
+            projectDescription={projectDescription}
+            projectColour={projectColour}
             submitDisabled={projectName.length < 3}
             resetStateData={resetStateData}
-            handleAddProject={handleAddProject}
-          >
-            <div className="form-container">
-              <div>
-                <label htmlFor="project-name">Project Name</label>
-                <input
-                  type="text"
-                  id="project-name"
-                  name="project-name"
-                  value={projectName}
-                  onChange={(e) => setProjectName(e.target.value)}
-                  required
-                  placeholder="Enter project name"
-                  maxLength={60}
-                />
-              </div>
-
-              <label htmlFor="project-name">Project Colour</label>
-              <div className="project-colour-selection">
-                {colours.map((colour, index) => (
-                  <div
-                    key={index}
-                    className="colour-selection-item"
-                    style={{
-                      border: projectColour === colour ? `1px solid ${colour}` : "none",
-                    }}
-                    onClick={() => {
-                      if (projectColour === colour) {
-                        return setProjectColour("");
-                      }
-                      return setProjectColour(colour);
-                    }}
-                  >
-                    <div style={{ backgroundColor: colour }}></div>
-                  </div>
-                ))}
-              </div>
-
-              <div>
-                <label htmlFor="project-description">
-                  Project Description <span>(Optional)</span>
-                </label>
-                <textarea
-                  name="project-description"
-                  id="project-description"
-                  value={projectDescription}
-                  onChange={(e) => setProjectDescription(e.target.value)}
-                  placeholder="Enter project description"
-                  maxLength={255}
-                />
-              </div>
-            </div>
-          </Modal>
+            handleSubmitData={handleSubmitData}
+            setProjectName={setProjectName}
+            setProjectDescription={setProjectDescription}
+            setProjectColour={setProjectColour}
+            setIsOpen={setIsOpen}
+          />
         )}
       </div>
     </>
