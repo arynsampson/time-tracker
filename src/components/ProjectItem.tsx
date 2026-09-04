@@ -1,11 +1,15 @@
+import { useState } from "react";
 import { EllipsisVertical } from "lucide-react";
 import type { Project } from "../views/Projects";
+import ContextMenu from "../components/ContextMenu";
 
 type ProjectItemProps = {
   project: Project;
 };
 
 export default function ProjectItem({ project }: ProjectItemProps) {
+  const [contextMenuIsOpen, setContextMenuIsOpen] = useState(false);
+
   return (
     <div className="project-item">
       <div className="project-colour" style={{ backgroundColor: project.projectColour }}></div>
@@ -16,8 +20,15 @@ export default function ProjectItem({ project }: ProjectItemProps) {
       <p className="project-hours">
         0 <span>hrs</span>
       </p>
-      <div className="context-menu">
+      <div className="context-menu-container" onClick={() => setContextMenuIsOpen(!contextMenuIsOpen)}>
         <EllipsisVertical size="14px" />
+        {contextMenuIsOpen && (
+          <ContextMenu>
+            <div className="context-menu-item">Edit Project</div>
+            <div className="greyline"></div>
+            <div className="context-menu-item">Delete Project</div>
+          </ContextMenu>
+        )}
       </div>
     </div>
   );

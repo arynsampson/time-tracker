@@ -61,6 +61,12 @@ button[disabled] {
   }
 }
 
+.greyline {
+  height: 0.5px;
+  width: 100%;
+  background-color: lightgrey;
+}
+
 .sidebar {
   display: flex;
   flex-direction: column;
@@ -236,12 +242,6 @@ button[disabled] {
       }
     }
 
-    .greyline {
-      height: 0.5px;
-      width: 100%;
-      background-color: lightgrey;
-    }
-
     .form-container {
       padding: 20px;
       width: 100%;
@@ -316,6 +316,41 @@ button[disabled] {
       align-items: center;
       justify-content: flex-end;
       column-gap: 10px;
+    }
+  }
+}
+
+.context-menu-container {
+  position: relative;
+
+  &:hover {
+    cursor: pointer;
+  }
+
+  .context-menu {
+    position: absolute;
+    top: 20px;
+    left: -150px;
+    width: 150px;
+    padding: 10px 15px;
+    border: 1px solid lightgrey;
+    background-color: white;
+    border-radius: 5px;
+
+    .context-menu-item {
+      padding: 10px 0;
+
+      &:hover {
+        color: lightgrey;
+      }
+
+      &:last-of-type {
+        color: #e76f6f;
+
+        &:hover {
+          color: lightgrey;
+        }
+      }
     }
   }
 }
