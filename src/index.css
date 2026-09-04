@@ -252,18 +252,6 @@ button[disabled] {
         flex-direction: column;
         margin-bottom: 20px;
 
-        label {
-          display: inline-block;
-          margin-bottom: 10px;
-          font-size: 14px;
-          font-weight: 500;
-
-          span {
-            font-size: 12px;
-            color: #969ba3;
-          }
-        }
-
         input,
         textarea {
           font-size: 12px;
@@ -279,11 +267,21 @@ button[disabled] {
         }
       }
 
+      label {
+        display: inline-block;
+        margin-bottom: 10px;
+        font-size: 14px;
+        font-weight: 500;
+
+        span {
+          font-size: 12px;
+          color: #969ba3;
+        }
+      }
+
       .project-colour-selection {
         display: flex;
         flex-direction: row;
-        padding: 10px;
-        column-gap: 10px;
         justify-content: space-between;
         margin-bottom: 0;
 
