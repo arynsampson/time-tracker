@@ -113,7 +113,6 @@ export default function Modal({
           </button>
           <button
             className="btn btn-primary"
-            type="submit"
             onClick={() => {
               handleSubmitData({
                 projectId: projectId ? projectId : "",

@@ -35,19 +35,19 @@ export default function Projects() {
 
     if (!projectToUpdate) return;
 
-    const updatedProjects = projects.map((project) => {
-      if (project.projectId === projectToUpdate.projectId) {
-        project = {
-          projectId: updatedProjectData.projectId,
-          projectName: updatedProjectData.projectName,
-          projectDescription: updatedProjectData.projectDescription,
-          projectColour: updatedProjectData.projectColour,
-        };
-      }
-      return project;
-    });
-
-    setProjects(updatedProjects);
+    setProjects(
+      projects.map((project) => {
+        if (project.projectId === projectToUpdate.projectId) {
+          project = {
+            projectId: updatedProjectData.projectId,
+            projectName: updatedProjectData.projectName,
+            projectDescription: updatedProjectData.projectDescription,
+            projectColour: updatedProjectData.projectColour,
+          };
+        }
+        return project;
+      }),
+    );
 
     resetStateData();
     setIsOpen(false);
@@ -68,6 +68,10 @@ export default function Projects() {
     setIsOpen(false);
   };
 
+  const handleDeleteProject = (projectId: string) => {
+    setProjects(projects.filter((project) => project.projectId !== projectId));
+  };
+
   return (
     <>
       <div className="projects view">
@@ -84,6 +88,7 @@ export default function Projects() {
                 projectColour={projectColour}
                 resetStateData={resetStateData}
                 handleSubmitData={handleUpdateProjectData}
+                handleDeleteProject={handleDeleteProject}
                 setProjectName={setProjectName}
                 setProjectDescription={setProjectDescription}
                 setProjectColour={setProjectColour}

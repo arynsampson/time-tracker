@@ -35,17 +35,26 @@
 }
 
 .btn-secondary {
-  padding: 10px 15px;
-  font-size: 13px;
-  border-radius: 7px;
   color: #6b7078;
-  background-color: #fff;
+  background-color: #e7e8ec;
   border: 1px solid #e7e8ec;
 
   &:hover {
     color: #fff;
     background-color: #969ba3;
     border: 1px solid #969ba3;
+  }
+}
+
+.btn-delete {
+  color: #fff;
+  background-color: #e76f6f;
+  border: 1px solid #e76f6f;
+
+  &:hover {
+    color: #fff;
+    background-color: #ec9090;
+    border: 1px solid #ec9090;
   }
 }
 

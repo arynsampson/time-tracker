@@ -3,6 +3,7 @@ import { EllipsisVertical } from "lucide-react";
 import type { Project } from "../views/Projects";
 import ContextMenu from "../components/ContextMenu";
 import ProjectModal from "./ProjectModal";
+import DeleteProjectModal from "./DeleteProjectModal";
 
 type ProjectItemProps = {
   project: Project;
@@ -11,6 +12,7 @@ type ProjectItemProps = {
   projectColour: string;
   resetStateData: () => void;
   handleSubmitData: (project: Project) => void;
+  handleDeleteProject: (projectId: string) => void;
   setProjectName: React.Dispatch<React.SetStateAction<string>>;
   setProjectDescription: React.Dispatch<React.SetStateAction<string>>;
   setProjectColour: React.Dispatch<React.SetStateAction<string>>;
@@ -23,12 +25,14 @@ export default function ProjectItem({
   projectColour,
   resetStateData,
   handleSubmitData,
+  handleDeleteProject,
   setProjectName,
   setProjectDescription,
   setProjectColour,
 }: ProjectItemProps) {
   const [contextMenuIsOpen, setContextMenuIsOpen] = useState(false);
   const [editModalIsOpen, setEditModalIsOpen] = useState(false);
+  const [deleteProjectModalIsOpen, setDeleteProjectModalIsOpen] = useState(false);
 
   const handleOpenEditModal = () => {
     setProjectName(project.projectName);
@@ -55,7 +59,9 @@ export default function ProjectItem({
               Edit Project
             </div>
             <div className="greyline"></div>
-            <div className="context-menu-item">Delete Project</div>
+            <div className="context-menu-item" onClick={() => setDeleteProjectModalIsOpen(true)}>
+              Delete Project
+            </div>
           </ContextMenu>
         )}
       </div>
@@ -74,6 +80,17 @@ export default function ProjectItem({
           setProjectDescription={setProjectDescription}
           setProjectColour={setProjectColour}
           setEditModalIsOpen={setEditModalIsOpen}
+        />
+      )}
+      {deleteProjectModalIsOpen && (
+        <DeleteProjectModal
+          heading="Are you sure you want to delete"
+          submitButtonCopy="Delete Project"
+          projectName={project.projectName}
+          projectId={project.projectId}
+          resetStateData={resetStateData}
+          handleDeleteProject={handleDeleteProject}
+          setDeleteProjectModalIsOpen={setDeleteProjectModalIsOpen}
         />
       )}
     </div>
