@@ -1,14 +1,16 @@
 import { X } from "lucide-react";
+import type { Project } from "../views/Projects";
 
 type ModalProps = {
   heading: string;
   submitButtonCopy: string;
+  projectId?: string;
   projectName: string;
   projectDescription: string;
   projectColour: string;
   submitDisabled: boolean;
   resetStateData: () => void;
-  handleSubmitData: () => void;
+  handleSubmitData: (project: Project) => void;
   setProjectName: React.Dispatch<React.SetStateAction<string>>;
   setProjectDescription: React.Dispatch<React.SetStateAction<string>>;
   setProjectColour: React.Dispatch<React.SetStateAction<string>>;
@@ -19,6 +21,7 @@ type ModalProps = {
 export default function Modal({
   heading,
   submitButtonCopy,
+  projectId,
   projectName,
   projectDescription,
   projectColour,
@@ -111,7 +114,15 @@ export default function Modal({
           <button
             className="btn btn-primary"
             type="submit"
-            onClick={() => handleSubmitData()}
+            onClick={() => {
+              handleSubmitData({
+                projectId: projectId ? projectId : "",
+                projectName: projectName,
+                projectColour: projectColour,
+                projectDescription: projectDescription,
+              });
+              handleCloseModal();
+            }}
             disabled={submitDisabled}
           >
             {submitButtonCopy}

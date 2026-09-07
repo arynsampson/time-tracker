@@ -6,8 +6,11 @@ import Modal from "../components/Modal";
 
 type ProjectItemProps = {
   project: Project;
+  projectName: string;
+  projectDescription: string;
+  projectColour: string;
   resetStateData: () => void;
-  handleSubmitData: () => void;
+  handleSubmitData: (project: Project) => void;
   setProjectName: React.Dispatch<React.SetStateAction<string>>;
   setProjectDescription: React.Dispatch<React.SetStateAction<string>>;
   setProjectColour: React.Dispatch<React.SetStateAction<string>>;
@@ -15,6 +18,9 @@ type ProjectItemProps = {
 
 export default function ProjectItem({
   project,
+  projectName,
+  projectDescription,
+  projectColour,
   resetStateData,
   handleSubmitData,
   setProjectName,
@@ -23,6 +29,13 @@ export default function ProjectItem({
 }: ProjectItemProps) {
   const [contextMenuIsOpen, setContextMenuIsOpen] = useState(false);
   const [editModalIsOpen, setEditModalIsOpen] = useState(false);
+
+  const handleOpenEditModal = () => {
+    setProjectName(project.projectName);
+    setProjectDescription(project.projectDescription);
+    setProjectColour(project.projectColour);
+    setEditModalIsOpen(true);
+  };
 
   return (
     <div className="project-item">
@@ -38,7 +51,7 @@ export default function ProjectItem({
         <EllipsisVertical size="14px" />
         {contextMenuIsOpen && (
           <ContextMenu>
-            <div className="context-menu-item" onClick={() => setEditModalIsOpen(true)}>
+            <div className="context-menu-item" onClick={() => handleOpenEditModal()}>
               Edit Project
             </div>
             <div className="greyline"></div>
@@ -50,9 +63,10 @@ export default function ProjectItem({
         <Modal
           heading="Edit Project"
           submitButtonCopy="Update Project"
-          projectName={project.projectName}
-          projectDescription={project.projectDescription}
-          projectColour={project.projectColour}
+          projectId={project.projectId}
+          projectName={projectName}
+          projectDescription={projectDescription}
+          projectColour={projectColour}
           submitDisabled={false}
           resetStateData={resetStateData}
           handleSubmitData={handleSubmitData}

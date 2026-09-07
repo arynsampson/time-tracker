@@ -5,7 +5,7 @@ import Modal from "../components/Modal";
 import ProjectItem from "../components/ProjectItem";
 
 export type Project = {
-  id: string;
+  projectId: string;
   projectName: string;
   projectDescription: string;
   projectColour: string;
@@ -20,6 +20,7 @@ export default function Projects() {
 
   useEffect(() => {
     localStorage.setItem("projects", JSON.stringify(projects));
+    // console.log(projects);
   }, [projects]);
 
   const resetStateData = () => {
@@ -28,11 +29,36 @@ export default function Projects() {
     setProjectColour("");
   };
 
-  const handleSubmitData = () => {
+  const handleUpdateProjectData = (updatedProjectData: Project) => {
+    const projectToUpdate: Project | undefined = projects.find(
+      (project: Project) => project.projectId === updatedProjectData.projectId,
+    );
+
+    if (!projectToUpdate) return;
+
+    const updatedProjects = projects.map((project) => {
+      if (project.projectId === projectToUpdate.projectId) {
+        project = {
+          projectId: updatedProjectData.projectId,
+          projectName: updatedProjectData.projectName,
+          projectDescription: updatedProjectData.projectDescription,
+          projectColour: updatedProjectData.projectColour,
+        };
+      }
+      return project;
+    });
+
+    setProjects(updatedProjects);
+
+    resetStateData();
+    setIsOpen(false);
+  };
+
+  const saveNewProject = () => {
     setProjects([
       ...projects,
       {
-        id: crypto.randomUUID(),
+        projectId: crypto.randomUUID(),
         projectName,
         projectDescription,
         projectColour,
@@ -52,10 +78,13 @@ export default function Projects() {
           {projects.map((project) => {
             return (
               <ProjectItem
-                key={project.id}
+                key={project.projectId}
                 project={project}
+                projectName={projectName}
+                projectDescription={projectDescription}
+                projectColour={projectColour}
                 resetStateData={resetStateData}
-                handleSubmitData={handleSubmitData}
+                handleSubmitData={handleUpdateProjectData}
                 setProjectName={setProjectName}
                 setProjectDescription={setProjectDescription}
                 setProjectColour={setProjectColour}
@@ -72,7 +101,7 @@ export default function Projects() {
             projectColour={projectColour}
             submitDisabled={projectName.length < 3}
             resetStateData={resetStateData}
-            handleSubmitData={handleSubmitData}
+            handleSubmitData={saveNewProject}
             setProjectName={setProjectName}
             setProjectDescription={setProjectDescription}
             setProjectColour={setProjectColour}
