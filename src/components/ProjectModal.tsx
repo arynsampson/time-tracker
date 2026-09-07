@@ -14,8 +14,8 @@ type ModalProps = {
   setProjectName: React.Dispatch<React.SetStateAction<string>>;
   setProjectDescription: React.Dispatch<React.SetStateAction<string>>;
   setProjectColour: React.Dispatch<React.SetStateAction<string>>;
-  setIsOpen?: React.Dispatch<React.SetStateAction<boolean>>;
-  setEditModalIsOpen?: React.Dispatch<React.SetStateAction<boolean>>;
+  setAddProjectModalisOpen?: React.Dispatch<React.SetStateAction<boolean>>;
+  setEditProjectModalIsOpen?: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
 export default function Modal({
@@ -31,12 +31,12 @@ export default function Modal({
   setProjectName,
   setProjectDescription,
   setProjectColour,
-  setIsOpen,
-  setEditModalIsOpen,
+  setAddProjectModalisOpen,
+  setEditProjectModalIsOpen,
 }: ModalProps) {
   const handleCloseModal = () => {
-    setIsOpen?.(false);
-    setEditModalIsOpen?.(false);
+    setAddProjectModalisOpen?.(false);
+    setEditProjectModalIsOpen?.(false);
     resetStateData();
   };
 

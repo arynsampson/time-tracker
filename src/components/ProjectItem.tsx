@@ -31,14 +31,14 @@ export default function ProjectItem({
   setProjectColour,
 }: ProjectItemProps) {
   const [contextMenuIsOpen, setContextMenuIsOpen] = useState(false);
-  const [editModalIsOpen, setEditModalIsOpen] = useState(false);
+  const [editProjectModalIsOpen, setEditProjectModalIsOpen] = useState(false);
   const [deleteProjectModalIsOpen, setDeleteProjectModalIsOpen] = useState(false);
 
   const handleOpenEditModal = () => {
     setProjectName(project.projectName);
     setProjectDescription(project.projectDescription);
     setProjectColour(project.projectColour);
-    setEditModalIsOpen(true);
+    setEditProjectModalIsOpen(true);
   };
 
   return (
@@ -65,7 +65,7 @@ export default function ProjectItem({
           </ContextMenu>
         )}
       </div>
-      {editModalIsOpen && (
+      {editProjectModalIsOpen && (
         <ProjectModal
           heading="Edit Project"
           submitButtonCopy="Update Project"
@@ -79,7 +79,7 @@ export default function ProjectItem({
           setProjectName={setProjectName}
           setProjectDescription={setProjectDescription}
           setProjectColour={setProjectColour}
-          setEditModalIsOpen={setEditModalIsOpen}
+          setEditProjectModalIsOpen={setEditProjectModalIsOpen}
         />
       )}
       {deleteProjectModalIsOpen && (

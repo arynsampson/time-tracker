@@ -1,11 +1,11 @@
 type ButtonProps = {
   text: string;
-  setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  setAddProjectModalisOpen: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
-export default function Button({ text, setIsOpen }: ButtonProps) {
+export default function Button({ text, setAddProjectModalisOpen }: ButtonProps) {
   return (
-    <button className="btn btn-primary" onClick={() => setIsOpen(true)}>
+    <button className="btn btn-primary" onClick={() => setAddProjectModalisOpen(true)}>
       + {text}
     </button>
   );

@@ -12,7 +12,7 @@ export type Project = {
 };
 
 export default function Projects() {
-  const [isOpen, setIsOpen] = useState(false);
+  const [addProjectModalisOpen, setAddProjectModalisOpen] = useState(false);
   const [projectName, setProjectName] = useState("");
   const [projectDescription, setProjectDescription] = useState("");
   const [projectColour, setProjectColour] = useState("");
@@ -26,6 +26,21 @@ export default function Projects() {
     setProjectName("");
     setProjectDescription("");
     setProjectColour("");
+  };
+
+  const handleAddNewProject = () => {
+    setProjects([
+      ...projects,
+      {
+        projectId: crypto.randomUUID(),
+        projectName,
+        projectDescription,
+        projectColour,
+      },
+    ]);
+
+    resetStateData();
+    setAddProjectModalisOpen(false);
   };
 
   const handleUpdateProjectData = (updatedProjectData: Project) => {
@@ -50,22 +65,7 @@ export default function Projects() {
     );
 
     resetStateData();
-    setIsOpen(false);
-  };
-
-  const saveNewProject = () => {
-    setProjects([
-      ...projects,
-      {
-        projectId: crypto.randomUUID(),
-        projectName,
-        projectDescription,
-        projectColour,
-      },
-    ]);
-
-    resetStateData();
-    setIsOpen(false);
+    setAddProjectModalisOpen(false);
   };
 
   const handleDeleteProject = (projectId: string) => {
@@ -76,7 +76,7 @@ export default function Projects() {
     <>
       <div className="projects view">
         <h2>Projects</h2>
-        <Button text="New Project" setIsOpen={setIsOpen} />
+        <Button text="New Project" setAddProjectModalisOpen={setAddProjectModalisOpen} />
         <div className="projects-list">
           {projects.map((project) => {
             return (
@@ -96,7 +96,7 @@ export default function Projects() {
             );
           })}
         </div>
-        {isOpen && (
+        {addProjectModalisOpen && (
           <ProjectModal
             heading="Add New Project"
             submitButtonCopy="Create Project"
@@ -105,11 +105,11 @@ export default function Projects() {
             projectColour={projectColour}
             submitDisabled={projectName.length < 3}
             resetStateData={resetStateData}
-            handleSubmitData={saveNewProject}
+            handleSubmitData={handleAddNewProject}
             setProjectName={setProjectName}
             setProjectDescription={setProjectDescription}
             setProjectColour={setProjectColour}
-            setIsOpen={setIsOpen}
+            setAddProjectModalisOpen={setAddProjectModalisOpen}
           />
         )}
       </div>
