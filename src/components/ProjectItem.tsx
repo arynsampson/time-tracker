@@ -2,7 +2,7 @@ import { useState } from "react";
 import { EllipsisVertical } from "lucide-react";
 import type { Project } from "../views/Projects";
 import ContextMenu from "../components/ContextMenu";
-import Modal from "../components/Modal";
+import ProjectModal from "./ProjectModal";
 
 type ProjectItemProps = {
   project: Project;
@@ -60,7 +60,7 @@ export default function ProjectItem({
         )}
       </div>
       {editModalIsOpen && (
-        <Modal
+        <ProjectModal
           heading="Edit Project"
           submitButtonCopy="Update Project"
           projectId={project.projectId}

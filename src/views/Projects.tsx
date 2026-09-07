@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 
 import Button from "../components/Button";
-import Modal from "../components/Modal";
+import ProjectModal from "../components/ProjectModal";
 import ProjectItem from "../components/ProjectItem";
 
 export type Project = {
@@ -20,7 +20,6 @@ export default function Projects() {
 
   useEffect(() => {
     localStorage.setItem("projects", JSON.stringify(projects));
-    // console.log(projects);
   }, [projects]);
 
   const resetStateData = () => {
@@ -93,7 +92,7 @@ export default function Projects() {
           })}
         </div>
         {isOpen && (
-          <Modal
+          <ProjectModal
             heading="Add New Project"
             submitButtonCopy="Create Project"
             projectName={projectName}
