@@ -74,7 +74,7 @@ export default function Projects() {
 
   return (
     <>
-      <div className="projects view">
+      <div className="projects view view-with-btn">
         <h2>Projects</h2>
         <Button text="New Project" setAddProjectModalisOpen={setAddProjectModalisOpen} />
         <div className="projects-list">
