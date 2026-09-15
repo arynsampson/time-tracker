@@ -7,7 +7,11 @@ import Statistics from "../views/Statistics";
 
 import "../index.css";
 
-export default function ViewCard({ viewId }) {
+type ViewCardProps = {
+  viewId: number;
+};
+
+export default function ViewCard({ viewId }: ViewCardProps) {
   return (
     <div className="view-card">
       {viewId === 0 ? (
