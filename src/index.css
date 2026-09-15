@@ -152,73 +152,12 @@ button[disabled] {
 }
 
 .view-with-btn {
+  width: 100%;
   display: flex;
-  flex-direction: row !important;
+  flex-direction: row;
   align-items: flex-start;
   justify-content: space-between;
   flex-wrap: wrap;
-}
-
-.projects {
-  .projects-list {
-    width: 100%;
-    margin-top: 20px;
-    border: #e7e8ec 1px solid;
-    border-radius: 15px;
-
-    .project-item {
-      border-bottom: #e7e8ec 1px solid;
-      padding: 15px;
-      display: flex;
-      column-gap: 15px;
-      align-items: center;
-
-      &:last-child {
-        border: none;
-      }
-
-      .project-colour {
-        width: 30px;
-        height: 30px;
-        background-color: rgb(216, 79, 79);
-        border-radius: 5px;
-      }
-
-      .project-info {
-        display: flex;
-        flex-direction: column;
-        row-gap: 5px;
-
-        .project-name {
-          font-size: 14px;
-          font-weight: 500;
-        }
-
-        .project-description {
-          color: #969ba3;
-          font-size: 12px;
-        }
-      }
-
-      .project-hours {
-        margin-left: auto;
-
-        span {
-          font-size: 12px;
-          color: #969ba3;
-        }
-      }
-
-      .context-menu:hover {
-        cursor: pointer;
-      }
-    }
-  }
-}
-
-.tasks-content {
-  width: 100%;
-  margin-top: 20px;
 }
 
 .backdrop {
@@ -339,10 +278,6 @@ button[disabled] {
 .context-menu-container {
   position: relative;
 
-  &:hover {
-    cursor: pointer;
-  }
-
   .context-menu {
     position: absolute;
     top: 20px;
@@ -358,6 +293,7 @@ button[disabled] {
 
       &:hover {
         color: lightgrey;
+        cursor: pointer;
       }
 
       &:last-of-type {
@@ -368,6 +304,65 @@ button[disabled] {
         }
       }
     }
+  }
+}
+
+.projects {
+  .projects-list {
+    width: 100%;
+    margin-top: 20px;
+    border: #e7e8ec 1px solid;
+    border-radius: 15px;
+
+    .project-item {
+      border-bottom: #e7e8ec 1px solid;
+      padding: 15px;
+      display: flex;
+      column-gap: 15px;
+      align-items: center;
+
+      &:last-child {
+        border: none;
+      }
+
+      .project-colour {
+        width: 30px;
+        height: 30px;
+        background-color: rgb(216, 79, 79);
+        border-radius: 5px;
+      }
+
+      .project-info {
+        display: flex;
+        flex-direction: column;
+        row-gap: 5px;
+
+        .project-name {
+          font-size: 14px;
+          font-weight: 500;
+        }
+
+        .project-description {
+          color: #969ba3;
+          font-size: 12px;
+        }
+      }
+
+      .project-hours {
+        margin-left: auto;
+
+        span {
+          font-size: 12px;
+          color: #969ba3;
+        }
+      }
+    }
+  }
+}
+
+.tasks {
+  .tasks-content-display {
+    width: 100%;
   }
 }
 
