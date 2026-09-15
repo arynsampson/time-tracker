@@ -4,11 +4,14 @@ import Button from "../components/Button";
 import ProjectModal from "../components/ProjectModal";
 import ProjectItem from "../components/ProjectItem";
 
+import type { Task } from "./Tasks";
+
 export type Project = {
   projectId: string;
   projectName: string;
   projectDescription: string;
   projectColour: string;
+  tasks: Task[];
 };
 
 export default function Projects() {
@@ -36,6 +39,7 @@ export default function Projects() {
         projectName,
         projectDescription,
         projectColour,
+        tasks: [],
       },
     ]);
 
@@ -58,6 +62,7 @@ export default function Projects() {
             projectName: updatedProjectData.projectName,
             projectDescription: updatedProjectData.projectDescription,
             projectColour: updatedProjectData.projectColour,
+            tasks: project.tasks,
           };
         }
         return project;
@@ -74,28 +79,30 @@ export default function Projects() {
 
   return (
     <>
-      <div className="projects view view-with-btn">
+      <div className="projects view-with-btn">
         <h2>Projects</h2>
         <Button text="New Project" setAddProjectModalisOpen={setAddProjectModalisOpen} />
-        <div className="projects-list">
-          {projects.map((project) => {
-            return (
-              <ProjectItem
-                key={project.projectId}
-                project={project}
-                projectName={projectName}
-                projectDescription={projectDescription}
-                projectColour={projectColour}
-                resetStateData={resetStateData}
-                handleSubmitData={handleUpdateProjectData}
-                handleDeleteProject={handleDeleteProject}
-                setProjectName={setProjectName}
-                setProjectDescription={setProjectDescription}
-                setProjectColour={setProjectColour}
-              />
-            );
-          })}
-        </div>
+        {projects.length > 0 && (
+          <div className="projects-list">
+            {projects.map((project) => {
+              return (
+                <ProjectItem
+                  key={project.projectId}
+                  project={project}
+                  projectName={projectName}
+                  projectDescription={projectDescription}
+                  projectColour={projectColour}
+                  resetStateData={resetStateData}
+                  handleSubmitData={handleUpdateProjectData}
+                  handleDeleteProject={handleDeleteProject}
+                  setProjectName={setProjectName}
+                  setProjectDescription={setProjectDescription}
+                  setProjectColour={setProjectColour}
+                />
+              );
+            })}
+          </div>
+        )}
         {addProjectModalisOpen && (
           <ProjectModal
             heading="Add New Project"
