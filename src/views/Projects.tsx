@@ -19,7 +19,10 @@ export default function Projects() {
   const [projectName, setProjectName] = useState("");
   const [projectDescription, setProjectDescription] = useState("");
   const [projectColour, setProjectColour] = useState("");
-  const [projects, setProjects] = useState<Project[]>([]);
+  const [projects, setProjects] = useState<Project[]>(() => {
+    const savedProjects = localStorage.getItem("projects");
+    return savedProjects ? JSON.parse(savedProjects) : [];
+  });
 
   useEffect(() => {
     localStorage.setItem("projects", JSON.stringify(projects));
