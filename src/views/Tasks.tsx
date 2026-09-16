@@ -3,6 +3,8 @@ import { useState } from "react";
 import Button from "../components/Button";
 import NewTaskModal from "../components/NewTaskModal";
 
+import type { Project } from "./Projects";
+
 export type Task = {
   name: string;
   startTime: string;
@@ -13,6 +15,10 @@ export type Task = {
 export default function Tasks() {
   const [addTaskModalisOpen, setAddTaskModalisOpen] = useState(false);
   const [taskTitle, setTaskTitle] = useState("");
+  const [projects, setProjects] = useState<Project[]>(() => {
+    const savedProjects = localStorage.getItem("projects");
+    return savedProjects ? JSON.parse(savedProjects) : [];
+  });
 
   const resetStateData = () => {
     setTaskTitle("");
@@ -30,6 +36,7 @@ export default function Tasks() {
             heading="Create New Task"
             submitButtonCopy="Create Task"
             taskTitle={taskTitle}
+            projects={projects}
             submitDisabled={taskTitle.length < 3}
             resetStateData={resetStateData}
             handleSubmitData={handleAddNewTask}
