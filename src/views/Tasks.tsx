@@ -46,6 +46,19 @@ export default function Tasks() {
     }
   };
 
+  const tasksDisplay = projects.map((project) => {
+    return (
+      <div key={project.projectId}>
+        <h4>{project.projectName}</h4>
+        <div>
+          {project.tasks.map((task) => {
+            return <p key={task.id}>{task.name}</p>;
+          })}
+        </div>
+      </div>
+    );
+  });
+
   return (
     <>
       <div className="tasks view-with-btn">
@@ -66,7 +79,7 @@ export default function Tasks() {
             setAddTaskModalisOpen={setAddTaskModalisOpen}
           />
         )}
-        <div className="tasks-content-display">Tasks</div>
+        <div className="tasks-content-display">{tasksDisplay}</div>
       </div>
     </>
   );
