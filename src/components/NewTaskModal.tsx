@@ -1,6 +1,5 @@
 import { X } from "lucide-react";
 import type { Project } from "../views/Projects";
-import type { Task } from "../views/Tasks";
 
 type NewTaskModalProps = {
   heading: string;
