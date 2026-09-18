@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 import Button from "../components/Button";
 import NewTaskModal from "../components/NewTaskModal";
@@ -7,24 +7,42 @@ import type { Project } from "./Projects";
 
 export type Task = {
   name: string;
-  startTime: string;
-  endTime: string;
-  date: string;
+  timeLogs: [];
 };
 
 export default function Tasks() {
   const [addTaskModalisOpen, setAddTaskModalisOpen] = useState(false);
   const [taskTitle, setTaskTitle] = useState("");
+  const [projectOptionId, setProjectOptionId] = useState("");
   const [projects, setProjects] = useState<Project[]>(() => {
     const savedProjects = localStorage.getItem("projects");
     return savedProjects ? JSON.parse(savedProjects) : [];
   });
 
+  useEffect(() => {
+    localStorage.setItem("projects", JSON.stringify(projects));
+  }, [projects]);
+
   const resetStateData = () => {
     setTaskTitle("");
+    setProjectOptionId("");
   };
 
-  const handleAddNewTask = () => {};
+  const handleAddNewTask = () => {
+    if (projectOptionId) {
+      const updatedProjects: Project[] = projects.map((project) => {
+        if (project.projectId === projectOptionId) {
+          project.tasks.push({
+            name: taskTitle,
+            timeLogs: [],
+          });
+        }
+        return project;
+      });
+
+      setProjects(updatedProjects);
+    }
+  };
 
   return (
     <>
@@ -36,11 +54,13 @@ export default function Tasks() {
             heading="Create New Task"
             submitButtonCopy="Create Task"
             taskTitle={taskTitle}
+            projectOptionId={projectOptionId}
             projects={projects}
             submitDisabled={taskTitle.length < 3}
             resetStateData={resetStateData}
             handleSubmitData={handleAddNewTask}
             setTaskTitle={setTaskTitle}
+            setProjectOptionId={setProjectOptionId}
             setAddTaskModalisOpen={setAddTaskModalisOpen}
           />
         )}
