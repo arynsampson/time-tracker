@@ -6,6 +6,7 @@ import NewTaskModal from "../components/NewTaskModal";
 import type { Project } from "./Projects";
 
 export type Task = {
+  id: string;
   name: string;
   timeLogs: [];
 };
@@ -33,6 +34,7 @@ export default function Tasks() {
       const updatedProjects: Project[] = projects.map((project) => {
         if (project.projectId === projectOptionId) {
           project.tasks.push({
+            id: crypto.randomUUID(),
             name: taskTitle,
             timeLogs: [],
           });
