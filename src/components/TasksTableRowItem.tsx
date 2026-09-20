@@ -31,7 +31,6 @@ export default function TasksTableRowItem({ task, project }: TasksTableRowItemPr
                   Edit Task
                 </div>
                 <div className="greyline"></div>
-
                 <div className="context-menu-item" onClick={() => {}}>
                   Mark as complete
                 </div>

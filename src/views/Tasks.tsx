@@ -31,6 +31,7 @@ export default function Tasks() {
           project.tasks.push({
             id: crypto.randomUUID(),
             name: taskTitle,
+            completed: false,
             timeLogs: [],
           });
         }

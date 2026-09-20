@@ -9,6 +9,7 @@ export type Project = {
 export type Task = {
   id: string;
   name: string;
+  completed: boolean;
   timeLogs: [];
 };
 
