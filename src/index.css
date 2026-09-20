@@ -208,7 +208,8 @@ button[disabled] {
         margin-bottom: 20px;
 
         input,
-        textarea {
+        textarea,
+        select {
           font-size: 12px;
           padding: 10px;
           border-radius: 5px;
