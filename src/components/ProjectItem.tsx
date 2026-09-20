@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { EllipsisVertical } from "lucide-react";
-import type { Project } from "../views/Projects";
+import type { Project } from "../utils/types";
 import ContextMenu from "../components/ContextMenu";
 import ProjectModal from "./ProjectModal";
 import DeleteProjectModal from "./DeleteProjectModal";
