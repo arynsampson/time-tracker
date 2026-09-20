@@ -6,7 +6,7 @@ import ContextMenu from "./ContextMenu";
 
 import type { TasksTableRowItemProps } from "../utils/types";
 
-export default function TasksTableRowItem({ task, project }: TasksTableRowItemProps) {
+export default function TasksTableRowItem({ task, project, handleMarkTaskAsCompleted }: TasksTableRowItemProps) {
   const [contextMenuIsOpen, setContextMenuIsOpen] = useState(false);
 
   return (
@@ -20,6 +20,11 @@ export default function TasksTableRowItem({ task, project }: TasksTableRowItemPr
         <td>
           <p className="project-type-cell">Project</p>
         </td>
+        <td>
+          <div className={`task-status-indicator ${task.completed ? "completed-pill" : "incompleted-pill"}`}>
+            {task.completed ? "Completed" : "Incomplete"}
+          </div>
+        </td>
         <td className="tasks-table-context-menu">
           <div
             className="tasks-table-context-menu-container context-menu-container"
@@ -31,8 +36,8 @@ export default function TasksTableRowItem({ task, project }: TasksTableRowItemPr
                   Edit Task
                 </div>
                 <div className="greyline"></div>
-                <div className="context-menu-item" onClick={() => {}}>
-                  Mark as complete
+                <div className="context-menu-item" onClick={() => handleMarkTaskAsCompleted(task)}>
+                  {task.completed ? "Mark as incomplete" : "Mark as complete"}
                 </div>
                 <div className="greyline"></div>
                 <div className="context-menu-item" onClick={() => {}}>

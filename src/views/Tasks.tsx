@@ -4,7 +4,7 @@ import Button from "../components/Button";
 import NewTaskModal from "../components/NewTaskModal";
 import TasksTable from "../components/TasksTable";
 
-import type { Project } from "../utils/types";
+import type { Project, Task } from "../utils/types";
 
 export default function Tasks() {
   const [addTaskModalisOpen, setAddTaskModalisOpen] = useState(false);
@@ -42,6 +42,16 @@ export default function Tasks() {
     }
   };
 
+  const handleMarkTaskAsCompleted = (updatedTask: Task) => {
+    const updatedProjects: Project[] = projects.map((project) => {
+      project.tasks.map((task) => {
+        if (task.id === updatedTask.id) task.completed = !task.completed;
+      });
+      return project;
+    });
+    setProjects(updatedProjects);
+  };
+
   return (
     <>
       <div className="tasks view-with-btn">
@@ -63,7 +73,7 @@ export default function Tasks() {
           />
         )}
         <div className="tasks-content-display">
-          <TasksTable projects={projects} />
+          <TasksTable projects={projects} handleMarkTaskAsCompleted={handleMarkTaskAsCompleted} />
         </div>
       </div>
     </>

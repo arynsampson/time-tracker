@@ -470,3 +470,18 @@ button[disabled] {
   align-items: center;
   column-gap: 10px;
 }
+
+.task-status-indicator {
+  width: min-content;
+  padding: 6px;
+  border-radius: 8px;
+  color: #fff;
+}
+
+.completed-pill {
+  background-color: #4caf6a;
+}
+
+.incompleted-pill {
+  background-color: #e76f6f;
+}
