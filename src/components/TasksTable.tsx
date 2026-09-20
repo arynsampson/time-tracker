@@ -2,7 +2,7 @@ import TasksTableRowItem from "./TasksTableRowItem";
 
 import type { Project, Task, TasksTableProps } from "../utils/types";
 
-export default function TasksTable({ projects, handleMarkTaskAsCompleted }: TasksTableProps) {
+export default function TasksTable({ projects, handleMarkTaskAsCompleted, handleDeleteTask }: TasksTableProps) {
   const tableRowItems = projects.map((project: Project) => {
     return project.tasks.map((task: Task) => {
       return (
@@ -11,6 +11,7 @@ export default function TasksTable({ projects, handleMarkTaskAsCompleted }: Task
           project={project}
           task={task}
           handleMarkTaskAsCompleted={handleMarkTaskAsCompleted}
+          handleDeleteTask={handleDeleteTask}
         />
       );
     });

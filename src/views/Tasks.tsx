@@ -52,6 +52,17 @@ export default function Tasks() {
     setProjects(updatedProjects);
   };
 
+  const handleDeleteTask = (taskId: string) => {
+    const updatedProjects: Project[] = projects.map((project) => {
+      return {
+        ...project,
+        tasks: project.tasks.filter((task) => task.id !== taskId),
+      };
+    });
+
+    setProjects(updatedProjects);
+  };
+
   return (
     <>
       <div className="tasks view-with-btn">
@@ -73,7 +84,11 @@ export default function Tasks() {
           />
         )}
         <div className="tasks-content-display">
-          <TasksTable projects={projects} handleMarkTaskAsCompleted={handleMarkTaskAsCompleted} />
+          <TasksTable
+            projects={projects}
+            handleMarkTaskAsCompleted={handleMarkTaskAsCompleted}
+            handleDeleteTask={handleDeleteTask}
+          />
         </div>
       </div>
     </>

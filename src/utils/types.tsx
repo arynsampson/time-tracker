@@ -17,9 +17,11 @@ export type TasksTableRowItemProps = {
   task: Task;
   project: Project;
   handleMarkTaskAsCompleted: (task: Task) => void;
+  handleDeleteTask: (taskId: string) => void;
 };
 
 export type TasksTableProps = {
   projects: Project[];
   handleMarkTaskAsCompleted: (task: Task) => void;
+  handleDeleteTask: (taskId: string) => void;
 };

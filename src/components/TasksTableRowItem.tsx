@@ -6,7 +6,12 @@ import ContextMenu from "./ContextMenu";
 
 import type { TasksTableRowItemProps } from "../utils/types";
 
-export default function TasksTableRowItem({ task, project, handleMarkTaskAsCompleted }: TasksTableRowItemProps) {
+export default function TasksTableRowItem({
+  task,
+  project,
+  handleMarkTaskAsCompleted,
+  handleDeleteTask,
+}: TasksTableRowItemProps) {
   const [contextMenuIsOpen, setContextMenuIsOpen] = useState(false);
 
   return (
@@ -40,7 +45,7 @@ export default function TasksTableRowItem({ task, project, handleMarkTaskAsCompl
                   {task.completed ? "Mark as incomplete" : "Mark as complete"}
                 </div>
                 <div className="greyline"></div>
-                <div className="context-menu-item" onClick={() => {}}>
+                <div className="context-menu-item" onClick={() => handleDeleteTask(task.id)}>
                   Delete Task
                 </div>
               </ContextMenu>
