@@ -14,10 +14,15 @@ export default function Tasks() {
     const savedProjects = localStorage.getItem("projects");
     return savedProjects ? JSON.parse(savedProjects) : [];
   });
+  const [standaloneTasks, setStandaloneTasks] = useState<Task[]>(() => {
+    const savedStandaloneTasks = localStorage.getItem("standaloneTasks");
+    return savedStandaloneTasks ? JSON.parse(savedStandaloneTasks) : [];
+  });
 
   useEffect(() => {
     localStorage.setItem("projects", JSON.stringify(projects));
-  }, [projects]);
+    localStorage.setItem("tasks", JSON.stringify(standaloneTasks));
+  }, [projects, standaloneTasks]);
 
   const resetStateData = () => {
     setTaskTitle("");
@@ -39,6 +44,16 @@ export default function Tasks() {
       });
 
       setProjects(updatedProjects);
+    } else {
+      setStandaloneTasks([
+        ...standaloneTasks,
+        {
+          id: crypto.randomUUID(),
+          name: taskTitle,
+          completed: false,
+          timeLogs: [],
+        },
+      ]);
     }
   };
 
