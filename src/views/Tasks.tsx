@@ -4,13 +4,7 @@ import Button from "../components/Button";
 import NewTaskModal from "../components/NewTaskModal";
 import TasksTable from "../components/TasksTable";
 
-import type { Project } from "./Projects";
-
-export type Task = {
-  id: string;
-  name: string;
-  timeLogs: [];
-};
+import type { Project } from "../utils/types";
 
 export default function Tasks() {
   const [addTaskModalisOpen, setAddTaskModalisOpen] = useState(false);

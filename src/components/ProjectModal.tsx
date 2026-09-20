@@ -1,5 +1,5 @@
 import { X } from "lucide-react";
-import type { Project } from "../views/Projects";
+import type { Project } from "../utils/types";
 
 type ModalProps = {
   heading: string;

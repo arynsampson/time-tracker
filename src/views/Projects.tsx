@@ -4,15 +4,7 @@ import Button from "../components/Button";
 import ProjectModal from "../components/ProjectModal";
 import ProjectItem from "../components/ProjectItem";
 
-import type { Task } from "./Tasks";
-
-export type Project = {
-  projectId: string;
-  projectName: string;
-  projectDescription: string;
-  projectColour: string;
-  tasks: Task[];
-};
+import type { Project } from "../utils/types";
 
 export default function Projects() {
   const [addProjectModalisOpen, setAddProjectModalisOpen] = useState(false);
