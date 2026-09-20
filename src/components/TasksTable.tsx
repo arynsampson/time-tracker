@@ -21,7 +21,7 @@ export default function TasksTable({ projects, handleMarkTaskAsCompleted }: Task
       <table>
         <thead>
           <tr>
-            <th>Task</th>
+            <th>Title</th>
             <th>Project</th>
             <th>Type</th>
             <th>Status</th>
