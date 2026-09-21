@@ -21,7 +21,7 @@ export default function Tasks() {
 
   useEffect(() => {
     localStorage.setItem("projects", JSON.stringify(projects));
-    localStorage.setItem("tasks", JSON.stringify(standaloneTasks));
+    localStorage.setItem("standaloneTasks", JSON.stringify(standaloneTasks));
   }, [projects, standaloneTasks]);
 
   const resetStateData = () => {
