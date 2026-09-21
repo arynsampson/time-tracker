@@ -38,6 +38,7 @@ export default function Tasks() {
             name: taskTitle,
             completed: false,
             timeLogs: [],
+            created_at: new Date().toISOString(),
           });
         }
         return project;
@@ -52,6 +53,7 @@ export default function Tasks() {
           name: taskTitle,
           completed: false,
           timeLogs: [],
+          created_at: new Date().toISOString(),
         },
       ]);
     }

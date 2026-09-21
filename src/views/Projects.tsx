@@ -35,6 +35,7 @@ export default function Projects() {
         projectDescription,
         projectColour,
         tasks: [],
+        created_at: new Date().toISOString(),
       },
     ]);
 
@@ -58,6 +59,7 @@ export default function Projects() {
             projectDescription: updatedProjectData.projectDescription,
             projectColour: updatedProjectData.projectColour,
             tasks: project.tasks,
+            created_at: project.created_at,
           };
         }
         return project;

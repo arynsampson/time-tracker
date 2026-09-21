@@ -4,6 +4,7 @@ export type Project = {
   projectDescription: string;
   projectColour: string;
   tasks: Task[];
+  created_at: string;
 };
 
 export type Task = {
@@ -11,6 +12,7 @@ export type Task = {
   name: string;
   completed: boolean;
   timeLogs: [];
+  created_at: string;
 };
 
 export type TasksTableRowItemProps = {
