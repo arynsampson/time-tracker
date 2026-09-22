@@ -19,8 +19,8 @@ export default function TasksTableRowItem({
       <tr key={task.id}>
         <td>{task.name}</td>
         <td className="tasks-table-project-cell">
-          <ProjectColour colour={project.projectColour} />
-          {project.projectName}
+          <ProjectColour colour={project ? project.projectColour : "lightgrey"} />
+          {project ? project.projectName : "Standalone"}
         </td>
         <td>
           <p className="project-type-cell">Project</p>
@@ -41,7 +41,7 @@ export default function TasksTableRowItem({
                   Edit Task
                 </div>
                 <div className="greyline"></div>
-                <div className="context-menu-item" onClick={() => handleMarkTaskAsCompleted(task)}>
+                <div className="context-menu-item" onClick={() => handleMarkTaskAsCompleted(task.id)}>
                   {task.completed ? "Mark as incomplete" : "Mark as complete"}
                 </div>
                 <div className="greyline"></div>

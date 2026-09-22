@@ -3,7 +3,7 @@ export type Project = {
   projectName: string;
   projectDescription: string;
   projectColour: string;
-  tasks: Task[];
+  tasks: string[];
   created_at: string;
 };
 
@@ -12,18 +12,20 @@ export type Task = {
   name: string;
   completed: boolean;
   timeLogs: [];
+  projectId?: string;
   created_at: string;
+};
+
+export type TasksTableProps = {
+  tasks: Task[];
+  projects: Project[];
+  handleMarkTaskAsCompleted: (taskId: string) => void;
+  handleDeleteTask: (taskId: string) => void;
 };
 
 export type TasksTableRowItemProps = {
   task: Task;
-  project: Project;
-  handleMarkTaskAsCompleted: (task: Task) => void;
-  handleDeleteTask: (taskId: string) => void;
-};
-
-export type TasksTableProps = {
-  projects: Project[];
-  handleMarkTaskAsCompleted: (task: Task) => void;
+  project: Project | undefined;
+  handleMarkTaskAsCompleted: (taskId: string) => void;
   handleDeleteTask: (taskId: string) => void;
 };

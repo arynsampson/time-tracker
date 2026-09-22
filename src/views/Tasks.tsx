@@ -14,15 +14,15 @@ export default function Tasks() {
     const savedProjects = localStorage.getItem("projects");
     return savedProjects ? JSON.parse(savedProjects) : [];
   });
-  const [standaloneTasks, setStandaloneTasks] = useState<Task[]>(() => {
-    const savedStandaloneTasks = localStorage.getItem("standaloneTasks");
-    return savedStandaloneTasks ? JSON.parse(savedStandaloneTasks) : [];
+  const [tasks, setTasks] = useState<Task[]>(() => {
+    const savedTasks = localStorage.getItem("tasks");
+    return savedTasks ? JSON.parse(savedTasks) : [];
   });
 
   useEffect(() => {
     localStorage.setItem("projects", JSON.stringify(projects));
-    localStorage.setItem("standaloneTasks", JSON.stringify(standaloneTasks));
-  }, [projects, standaloneTasks]);
+    localStorage.setItem("tasks", JSON.stringify(tasks));
+  }, [projects, tasks]);
 
   const resetStateData = () => {
     setTaskTitle("");
@@ -30,53 +30,50 @@ export default function Tasks() {
   };
 
   const handleAddNewTask = () => {
+    const taskId = crypto.randomUUID();
+
     if (projectOptionId) {
       const updatedProjects: Project[] = projects.map((project) => {
         if (project.projectId === projectOptionId) {
-          project.tasks.push({
-            id: crypto.randomUUID(),
-            name: taskTitle,
-            completed: false,
-            timeLogs: [],
-            created_at: new Date().toISOString(),
-          });
+          project.tasks.push(taskId);
         }
         return project;
       });
 
       setProjects(updatedProjects);
-    } else {
-      setStandaloneTasks([
-        ...standaloneTasks,
-        {
-          id: crypto.randomUUID(),
-          name: taskTitle,
-          completed: false,
-          timeLogs: [],
-          created_at: new Date().toISOString(),
-        },
-      ]);
     }
+
+    setTasks([
+      ...tasks,
+      {
+        id: taskId,
+        name: taskTitle,
+        completed: false,
+        timeLogs: [],
+        projectId: projectOptionId ? projectOptionId : undefined,
+        created_at: new Date().toISOString(),
+      },
+    ]);
   };
 
-  const handleMarkTaskAsCompleted = (updatedTask: Task) => {
-    const updatedProjects: Project[] = projects.map((project) => {
-      project.tasks.map((task) => {
-        if (task.id === updatedTask.id) task.completed = !task.completed;
-      });
-      return project;
+  const handleMarkTaskAsCompleted = (taskId: string) => {
+    const updatedTasks = tasks.map((task) => {
+      if (task.id === taskId) task.completed = !task.completed;
+      return task;
     });
-    setProjects(updatedProjects);
+    setTasks(updatedTasks);
   };
 
   const handleDeleteTask = (taskId: string) => {
-    const updatedProjects: Project[] = projects.map((project) => {
-      return {
-        ...project,
-        tasks: project.tasks.filter((task) => task.id !== taskId),
-      };
-    });
+    // delete task from tasks
+    const updatedTasks: Task[] = tasks.filter((task) => task.id !== taskId);
+    setTasks(updatedTasks);
 
+    // delete task from projects
+    const updatedProjects: Project[] = projects.map((project) => {
+      project.tasks = project.tasks.filter((task) => task !== taskId);
+      return project;
+    });
     setProjects(updatedProjects);
   };
 
@@ -102,6 +99,7 @@ export default function Tasks() {
         )}
         <div className="tasks-content-display">
           <TasksTable
+            tasks={tasks}
             projects={projects}
             handleMarkTaskAsCompleted={handleMarkTaskAsCompleted}
             handleDeleteTask={handleDeleteTask}
