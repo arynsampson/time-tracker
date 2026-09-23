@@ -442,9 +442,17 @@ button[disabled] {
 .project-type-cell {
   width: min-content;
   padding: 6px;
+  border-radius: 8px;
+}
+
+.project-pill {
   background-color: #bdb2e8;
   color: #3c0ef3;
-  border-radius: 8px;
+}
+
+.standalone-pill {
+  background-color: lightgrey;
+  color: grey;
 }
 
 .tasks-table-context-menu {

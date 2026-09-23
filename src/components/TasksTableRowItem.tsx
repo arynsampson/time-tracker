@@ -23,7 +23,9 @@ export default function TasksTableRowItem({
           {project ? project.projectName : "Standalone"}
         </td>
         <td>
-          <p className="project-type-cell">Project</p>
+          <p className={`project-type-cell ${project ? "project-pill" : "standalone-pill"}`}>
+            {project ? "Project" : "Standalone"}
+          </p>
         </td>
         <td>
           <div className={`task-status-indicator ${task.completed ? "completed-pill" : "incompleted-pill"}`}>
