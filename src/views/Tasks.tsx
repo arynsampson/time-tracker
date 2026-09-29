@@ -35,8 +35,12 @@ export default function Tasks() {
     if (projectOptionId) {
       const updatedProjects: Project[] = projects.map((project) => {
         if (project.projectId === projectOptionId) {
-          project.tasks.push(taskId);
+          return {
+            ...project,
+            tasks: [...project.tasks, taskId],
+          };
         }
+
         return project;
       });
 
@@ -47,7 +51,7 @@ export default function Tasks() {
       ...tasks,
       {
         id: taskId,
-        name: taskTitle,
+        title: taskTitle,
         completed: false,
         timeLogs: [],
         projectId: projectOptionId ? projectOptionId : undefined,
@@ -58,7 +62,9 @@ export default function Tasks() {
 
   const handleMarkTaskAsCompleted = (taskId: string) => {
     const updatedTasks = tasks.map((task) => {
-      if (task.id === taskId) task.completed = !task.completed;
+      if (task.id === taskId) {
+        return { ...task, completed: !task.completed };
+      }
       return task;
     });
     setTasks(updatedTasks);
@@ -75,6 +81,16 @@ export default function Tasks() {
       return project;
     });
     setProjects(updatedProjects);
+  };
+
+  const handleUpdateTask = (taskId: string) => {
+    const updatedTasks = tasks.map((task) => {
+      if (task.id === taskId) {
+        return { ...task, title: taskTitle, projectId: projectOptionId };
+      }
+      return task;
+    });
+    setTasks(updatedTasks);
   };
 
   return (
@@ -101,8 +117,13 @@ export default function Tasks() {
           <TasksTable
             tasks={tasks}
             projects={projects}
+            taskTitle={taskTitle}
+            projectOptionId={projectOptionId}
             handleMarkTaskAsCompleted={handleMarkTaskAsCompleted}
             handleDeleteTask={handleDeleteTask}
+            handleUpdateTask={handleUpdateTask}
+            setTaskTitle={setTaskTitle}
+            setProjectOptionId={setProjectOptionId}
           />
         </div>
       </div>

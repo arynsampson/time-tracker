@@ -1,22 +1,21 @@
 import { X } from "lucide-react";
-import type { NewTaskModalProps } from "../utils/types";
+import type { EditTaskModalProps } from "../utils/types";
 
-export default function NewTaskModal({
+export default function EditTaskModal({
   heading,
-  submitButtonCopy,
   taskTitle,
+  submitButtonCopy,
+  taskId,
   projectOptionId,
   projects,
   submitDisabled,
-  resetStateData,
-  handleSubmitData,
+  handleUpdateTask,
+  setEditTaskModalIsOpen,
   setTaskTitle,
   setProjectOptionId,
-  setAddTaskModalisOpen,
-}: NewTaskModalProps) {
+}: EditTaskModalProps) {
   const handleCloseModal = () => {
-    setAddTaskModalisOpen(false);
-    resetStateData();
+    setEditTaskModalIsOpen(false);
   };
 
   const projectOptions = projects.map((project) => (
@@ -74,7 +73,7 @@ export default function NewTaskModal({
           <button
             className="btn btn-primary"
             onClick={() => {
-              handleSubmitData();
+              handleUpdateTask(taskId);
               handleCloseModal();
             }}
             disabled={submitDisabled}

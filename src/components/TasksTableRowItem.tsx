@@ -3,21 +3,34 @@ import { useState } from "react";
 import { EllipsisVertical } from "lucide-react";
 import ProjectColour from "./ProjectColour";
 import ContextMenu from "./ContextMenu";
+import EditTaskModal from "./EditTaskModal";
 
 import type { TasksTableRowItemProps } from "../utils/types";
 
 export default function TasksTableRowItem({
   task,
   project,
+  projects,
+  taskTitle,
+  handleUpdateTask,
   handleMarkTaskAsCompleted,
   handleDeleteTask,
+  setTaskTitle,
+  setProjectOptionId,
 }: TasksTableRowItemProps) {
   const [contextMenuIsOpen, setContextMenuIsOpen] = useState(false);
+  const [editTaskModalIsOpen, setEditTaskModalIsOpen] = useState(false);
+
+  const handleClick = () => {
+    setTaskTitle(task.title);
+    setProjectOptionId(task.projectId ? task.projectId : "");
+    setEditTaskModalIsOpen(true);
+  };
 
   return (
     <>
       <tr key={task.id}>
-        <td>{task.name}</td>
+        <td>{task.title}</td>
         <td className="tasks-table-project-cell">
           <ProjectColour colour={project ? project.projectColour : "lightgrey"} />
           {project ? project.projectName : "Standalone"}
@@ -37,9 +50,10 @@ export default function TasksTableRowItem({
             className="tasks-table-context-menu-container context-menu-container"
             onClick={() => setContextMenuIsOpen(!contextMenuIsOpen)}
           >
+            <EllipsisVertical size="16px" />
             {contextMenuIsOpen && (
               <ContextMenu>
-                <div className="context-menu-item" onClick={() => {}}>
+                <div className="context-menu-item" onClick={() => handleClick()}>
                   Edit Task
                 </div>
                 <div className="greyline"></div>
@@ -52,8 +66,22 @@ export default function TasksTableRowItem({
                 </div>
               </ContextMenu>
             )}
-            <EllipsisVertical size="16px" />
           </div>
+          {editTaskModalIsOpen && (
+            <EditTaskModal
+              heading="Edit Task"
+              submitButtonCopy="Update Task"
+              taskId={task.id}
+              taskTitle={taskTitle}
+              projectOptionId={project ? project.projectId : undefined}
+              projects={projects}
+              submitDisabled={false}
+              setEditTaskModalIsOpen={setEditTaskModalIsOpen}
+              setTaskTitle={setTaskTitle}
+              setProjectOptionId={setProjectOptionId}
+              handleUpdateTask={handleUpdateTask}
+            />
+          )}
         </td>
       </tr>
     </>
