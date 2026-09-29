@@ -59,7 +59,7 @@ export default function NewTaskModal({
               value={projectOptionId}
               onChange={(e) => setProjectOptionId(e.target.value)}
             >
-              <option value="">--Please choose an option--</option>
+              <option value="">--Select a project--</option>
               {projectOptions}
             </select>
           </div>
