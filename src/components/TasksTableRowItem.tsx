@@ -41,7 +41,7 @@ export default function TasksTableRowItem({
           </p>
         </td>
         <td>
-          <div className={`task-status-indicator ${task.completed ? "completed-pill" : "incompleted-pill"}`}>
+          <div className={`task-status-indicator ${task.completed ? "bg-green" : "bg-red"}`}>
             {task.completed ? "Completed" : "Incomplete"}
           </div>
         </td>

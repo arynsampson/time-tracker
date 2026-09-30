@@ -80,7 +80,7 @@ button[disabled] {
   display: flex;
   flex-direction: column;
   width: 160px;
-  background-color: #f8f9fa;
+  background-color: #fff;
   padding: 15px;
 
   svg {
@@ -142,6 +142,7 @@ button[disabled] {
 .view-card {
   padding: 15px 35px;
   width: 100%;
+  background-color: #f8f9fa;
 }
 
 .view {
@@ -207,16 +208,6 @@ button[disabled] {
         flex-direction: column;
         margin-bottom: 20px;
 
-        input,
-        textarea,
-        select {
-          font-size: 12px;
-          padding: 10px;
-          border-radius: 5px;
-          outline: none;
-          border: 1px solid #e7e8ec;
-        }
-
         textarea {
           resize: none;
           height: 100px;
@@ -274,6 +265,16 @@ button[disabled] {
       column-gap: 10px;
     }
   }
+}
+
+input,
+textarea,
+select {
+  font-size: 12px;
+  padding: 10px;
+  border-radius: 5px;
+  outline: none;
+  border: 1px solid #e7e8ec;
 }
 
 .context-menu-container {
@@ -487,10 +488,38 @@ button[disabled] {
   color: #fff;
 }
 
-.completed-pill {
+.bg-green {
   background-color: #4caf6a;
 }
 
-.incompleted-pill {
+.bg-red {
   background-color: #e76f6f;
+}
+
+.timer-card {
+  background-color: #fff;
+  border: 1px solid lightgrey;
+  border-radius: 10px;
+  padding: 25px;
+
+  h4,
+  .task-select {
+    margin: 10px 0;
+  }
+}
+
+.timer {
+  width: 250px;
+  height: 250px;
+  border: 5px solid grey;
+  margin: 20px 0;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.timer-buttons-container {
+  display: flex;
+  column-gap: 10px;
 }
